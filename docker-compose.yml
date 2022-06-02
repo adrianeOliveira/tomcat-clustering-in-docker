@@ -1,0 +1,31 @@
+portal:
+  image: nginx
+  ports:
+   - "8080:80"
+  volumes:
+   - /home/adriane/dev/tomcat/default.conf:/etc/nginx/conf.d/default.conf
+  links:
+   - node01:node01
+   - node02:node02
+   - node03:node03
+node01:
+  image: tomcat
+  volumes:
+   - /home/adriane/dev/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+   - /home/adriane/dev/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+   - /home/adriane/dev/tomcat/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
+   - /home/adriane/dev/tomcat/webapps:/usr/local/tomcat/webapps/
+node02:
+  image: tomcat
+  volumes:
+   - /home/adriane/dev/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+   - /home/adriane/dev/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+   - /home/adriane/dev/tomcat/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
+   - /home/adriane/dev/tomcat/webapps:/usr/local/tomcat/webapps/
+node03:
+  image: tomcat
+  volumes:
+   - /home/adriane/dev/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+   - /home/adriane/dev/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+   - /home/adriane/dev/tomcat/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
+   - /home/adriane/dev/tomcat/webapps:/usr/local/tomcat/webapps/
